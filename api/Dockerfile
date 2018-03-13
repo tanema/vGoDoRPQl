@@ -8,7 +8,7 @@ ENV APP_ENV $app_env
 
 COPY . /go/src/github.com/tanema/vGoDoRPQl/api
 WORKDIR /go/src/github.com/tanema/vGoDoRPQl/api
-RUN echo "machine api.github.com login tanema password 51c66af1c3d3f77ea78478eeee931799dc0e0081" > ~/.netrc
+RUN echo "machine api.github.com login tanema password [github-oauth-token]" > ~/.netrc
 RUN go get -u github.com/golang/vgo
 RUN CGO_ENABLED=0 GOOS=linux vgo build -a -installsuffix nocgo -o /app .
 
