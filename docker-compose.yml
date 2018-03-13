@@ -16,6 +16,8 @@ services:
       context: ./api
       args:
         app_env: ${APP_ENV}
+        github_user: ${GITHUB_USER}
+        github_token: ${GITHUB_TOKEN}
     volumes:
       - ./api:/go/src/github.com/tanema/vGoDoRPQl/api
     ports:

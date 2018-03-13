@@ -21,11 +21,20 @@ Disclaimer: This project is not actively supported and not recommended for produ
 
 ## Getting started:
 * download [docker-compose](https://docs.docker.com/compose/install/) if not already installed
-Then run the following commands:
+* Allow vgo to fetch from github without api limits
+  * setup [personal access token for github](https://github.com/settings/tokens)
+  * export `GITHUB_USER` as your username
+  * export `GITHUB_TOKEN` as your personal access token
 
+Then run the following commands:
 ```bash
 $ git clone https://github.com/tanema/vGoDoRPQl.git
 $ cd vGoDoRPQl
 $ make
 $ #open localhost:3000 to see it in action
 ```
+
+## Github Personal Access Token
+The reason these are required is because vGo is currently in a development state and
+it uses limit means to fetch from github. The token allows unlimited api access so
+vGo can download all dependencies.
