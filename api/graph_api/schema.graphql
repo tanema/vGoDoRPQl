@@ -1,0 +1,27 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+enum TodoStatus {
+  SHOW_ALL
+  SHOW_COMPLETED
+  SHOW_ACTIVE
+}
+
+type Query {
+  todo(id: Int!): Todo
+  todos(status: TodoStatus): [Todo!]!
+}
+
+type Mutation {
+  createTodo(text: String!, done: Boolean): Todo!
+  updateTodos(ids: [Int!], changes: Map!): [Todo]
+  deleteTodos(ids: [Int!]): [Todo]
+}
+
+type Todo {
+  id: Int!
+  text: String!
+  done: Boolean!
+}
