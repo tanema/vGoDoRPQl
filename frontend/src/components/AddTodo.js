@@ -15,7 +15,7 @@ class AddTodo extends Component {
     addTodo: PropTypes.func.isRequired,
   }
 
-  _handleSave (text) {
+  handleSave (text) {
     const refetch = this.props.todos.refetch;
     this.props.addTodo({variables: {text: text}}).then((e) => {
       refetch();
@@ -27,7 +27,7 @@ class AddTodo extends Component {
       <Input
         className="new-todo"
         placeholder="What needs to be done?"
-        onSave={this._handleSave.bind(this)}
+        onSave={this.handleSave.bind(this)}
       />
     )
   }

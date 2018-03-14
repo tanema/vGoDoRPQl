@@ -7,8 +7,11 @@ up-clean:
 down:
 	docker-compose down
 
-gen-schema:
-	gqlgen -out api/graph_api/generated.go -package graph_api -typemap api/graph_api/types.json -schema api/graph_api/schema.graphql
+gen-schema: #required gqlgen installed locally
+	gqlgen -out api/graph_api/generated.go \
+		-package graph_api \
+		-typemap api/graph_api/types.json \
+		-schema api/graph_api/schema.graphql
 
 rebuild:
 	docker-compose build api

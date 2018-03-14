@@ -15,7 +15,6 @@ export default class Input extends Component {
   }
 
   state = {
-    isEditing: false,
     text: this.props.initialValue || '',
   }
 
@@ -23,7 +22,7 @@ export default class Input extends Component {
     ReactDOM.findDOMNode(this).focus()
   }
 
-  _commitChanges = () => {
+  commitChanges() {
     var newText = this.state.text.trim()
     if (this.props.onDelete && newText === '') {
       this.props.onDelete()
@@ -35,15 +34,15 @@ export default class Input extends Component {
     }
   }
 
-  _handleChange = (e) => {
+  handleChange(e) {
     this.setState({text: e.target.value})
   }
 
-  _handleKeyDown = (e) => {
+  handleKeyDown(e) {
     if (this.props.onCancel && e.keyCode === ESC_KEY_CODE) {
       this.props.onCancel()
     } else if (e.keyCode === ENTER_KEY_CODE) {
-      this._commitChanges()
+      this.commitChanges()
     }
   }
 
@@ -51,8 +50,8 @@ export default class Input extends Component {
     return (
       <input
         className={this.props.className}
-        onChange={this._handleChange}
-        onKeyDown={this._handleKeyDown}
+        onChange={this.handleChange.bind(this)}
+        onKeyDown={this.handleKeyDown.bind(this)}
         placeholder={this.props.placeholder}
         value={this.state.text}
       />

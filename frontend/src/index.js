@@ -5,11 +5,14 @@ import ApolloClient from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
-import Urls from './util/Urls.js';
 import App from './components/App';
 
+let apiURL = process.env.NODE_ENV === 'production' ?
+  'http://localhost:5000/graphql' :
+  'http://localhost:5000/graphql';
+
 const apolloClient = new ApolloClient({
-  link: new HttpLink({uri: Urls.api+'/graphql'}),
+  link: new HttpLink({uri: apiURL}),
   cache: new InMemoryCache(),
 });
 
