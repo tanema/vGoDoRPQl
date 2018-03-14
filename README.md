@@ -23,6 +23,7 @@ Disclaimer: This project is not actively supported and not recommended for produ
 * download [docker-compose](https://docs.docker.com/compose/install/) if not already installed
 * Allow vgo to fetch from github without api limits
   * setup [personal access token for github](https://github.com/settings/tokens)
+    - with `public_repo` access
   * export `GITHUB_USER` as your username
   * export `GITHUB_TOKEN` as your personal access token
 
