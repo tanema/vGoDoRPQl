@@ -7,11 +7,17 @@ up-clean:
 down:
 	docker-compose down
 
+test-go:
+	vgo test ./api/...
+
+test-js:
+	cd frontend && npm test
+
 gen-schema: #required gqlgen installed locally
-	gqlgen -out api/graph_api/generated.go \
-		-package graph_api \
-		-typemap api/graph_api/types.json \
-		-schema api/graph_api/schema.graphql
+	gqlgen -out api/gql/gql.go \
+		-package gql \
+		-typemap api/gql/types.json \
+		-schema api/gql/schema.graphql
 
 rebuild:
 	docker-compose build api

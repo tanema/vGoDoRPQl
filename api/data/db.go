@@ -1,4 +1,4 @@
-package graph_api
+package data
 
 import (
 	"log"
@@ -8,9 +8,8 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
-var (
-	DB *gorm.DB
-)
+// DB is the connection to the database
+var DB *gorm.DB
 
 func init() {
 	var err error

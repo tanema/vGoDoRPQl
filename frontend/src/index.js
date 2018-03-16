@@ -7,6 +7,9 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import App from './components/App';
 
+import './style/base.css';
+import './style/index.css';
+
 let apiURL = process.env.NODE_ENV === 'production' ?
   'http://localhost:5000/graphql' :
   'http://localhost:5000/graphql';
