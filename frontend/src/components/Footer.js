@@ -4,11 +4,14 @@ import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/FilterTypes';
 
-const clearCompletedMutation = graphql(gql`mutation deleteTodos($ids: [Int!]) {
-  deleteTodos(ids: $ids) { id }
-}`, {
-  name: 'clearTodos'
-});
+const clearCompletedMutation = graphql(gql`
+  mutation deleteTodos($ids: [Int!]) {
+    deleteTodos(ids: $ids) { id }
+  }`,
+  {
+    name: 'clearTodos'
+  }
+);
 
 class Footer extends Component {
   static propTypes = {

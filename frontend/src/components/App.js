@@ -7,22 +7,25 @@ import AddTodo from './AddTodo';
 import List from './List';
 import Footer from './Footer';
 
-const todosQuery = graphql(gql`query getTodos($status: TodoStatus){
-  todos(status: $status) {
-    id,
-    text,
-    done
+const todosQuery = graphql(gql`
+  query getTodos($status: TodoStatus){
+    todos(status: $status) {
+      id,
+      text,
+      done
+    }
+  }`,
+  {
+    name: 'todos',
+    options: (props) => {
+      return {
+        variables: {
+          status: SHOW_ALL
+        }
+      };
+    }
   }
-}`, {
-  name: 'todos',
-  options: (props) => {
-    return {
-      variables: {
-        status: SHOW_ALL
-      }
-    };
-  }
-});
+);
 
 class App extends Component {
   static propTypes = {
@@ -31,19 +34,11 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <section className="todoapp">
-          <header className='header'>
-            <h1>todos</h1>
-            <AddTodo todos={this.props.todos} />
-          </header>
-          <List todos={this.props.todos} />
-          <Footer todos={this.props.todos} />
-        </section>
-        <footer className='info'>
-          <p> Double-click to edit a todo </p>
-        </footer>
-      </div>
+      <section className="todoapp">
+        <AddTodo todos={this.props.todos} />
+        <List todos={this.props.todos} />
+        <Footer todos={this.props.todos} />
+      </section>
     );
   }
 }

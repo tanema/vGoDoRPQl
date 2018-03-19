@@ -3,11 +3,14 @@ import Input from '../components/Input'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 
-const addTodoMutation = graphql(gql`mutation addTodo($text: String!) {
-  createTodo(done: false, text: $text) { id }
-}`, {
-  name: 'addTodo'
-});
+const addTodoMutation = graphql(gql`
+  mutation addTodo($text: String!) {
+    createTodo(done: false, text: $text) { id }
+  }`,
+  {
+    name: 'addTodo'
+  }
+);
 
 class AddTodo extends Component {
   static propTypes = {
@@ -16,19 +19,19 @@ class AddTodo extends Component {
   }
 
   handleSave (text) {
-    const refetch = this.props.todos.refetch;
-    this.props.addTodo({variables: {text: text}}).then((e) => {
-      refetch();
-    })
+    this.props.addTodo({variables: {text: text}}).then(this.props.todos.refetch)
   }
 
   render () {
     return (
-      <Input
-        className="new-todo"
-        placeholder="What needs to be done?"
-        onSave={this.handleSave.bind(this)}
-      />
+      <header className='header'>
+        <h1>todos</h1>
+        <Input
+          className="new-todo"
+          placeholder="What needs to be done?"
+          onSave={this.handleSave.bind(this)}
+        />
+      </header>
     )
   }
 }

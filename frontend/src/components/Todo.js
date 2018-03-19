@@ -6,15 +6,21 @@ import { graphql, compose } from 'react-apollo'
 import Input from '../components/Input'
 
 const todoMutations = compose(
-  graphql(gql`mutation renameTodo($id: Int!, $text: String!) {
-    updateTodos(ids: [$id], changes: {text: $text}) { id }
-  }`, { name: 'renameTodo' }),
-  graphql(gql`mutation deleteTodo($id: Int!) {
-    deleteTodos(ids: [$id]) { id }
-  }`, { name: 'deleteTodo' }),
-  graphql(gql`mutation toggleTodo($id: Int!, $complete: Boolean!) {
-    updateTodos(ids: [$id], changes: {done: $complete}) { id }
-  }`, { name: 'toggleTodo' }),
+  graphql(gql`
+    mutation renameTodo($id: Int!, $text: String!) {
+      updateTodos(ids: [$id], changes: {text: $text}) { id }
+    }`,
+    { name: 'renameTodo' }),
+  graphql(gql`
+    mutation deleteTodo($id: Int!) {
+      deleteTodos(ids: [$id]) { id }
+    }`,
+    { name: 'deleteTodo' }),
+  graphql(gql`
+    mutation toggleTodo($id: Int!, $complete: Boolean!) {
+      updateTodos(ids: [$id], changes: {done: $complete}) { id }
+    }`,
+    { name: 'toggleTodo' }),
 );
 
 class Todo extends Component {

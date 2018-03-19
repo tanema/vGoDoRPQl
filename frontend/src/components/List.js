@@ -3,11 +3,14 @@ import Todo from './Todo'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 
-const toggleAllMutation = graphql(gql`mutation toggleAllTodo($ids: [Int!], $complete: Boolean!) {
-  updateTodos(ids: $ids, changes: {done: $complete}) { id }
-}`, {
-  name: 'toggleAllTodos'
-});
+const toggleAllMutation = graphql(gql`
+  mutation toggleAllTodo($ids: [Int!], $complete: Boolean!) {
+    updateTodos(ids: $ids, changes: {done: $complete}) { id }
+  }`,
+  {
+    name: 'toggleAllTodos'
+  }
+);
 
 class List extends Component {
   static propTypes = {
