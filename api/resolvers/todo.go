@@ -2,6 +2,7 @@ package resolvers
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/mitchellh/mapstructure"
 
@@ -18,12 +19,15 @@ func New() gql.Resolvers {
 
 func (r *todoresolver) Mutation_createTodo(ctx context.Context, text string, done *bool) (data.Todo, error) {
 	newTodo := data.Todo{Text: text, Done: *done}
+	fmt.Printf("Creating TODO: %v", text)
 	return newTodo, data.DB.Create(&newTodo).Error
 }
 
 func (r *todoresolver) Mutation_updateTodos(ctx context.Context, ids []int, changes map[string]interface{}) ([]data.Todo, error) {
 	todos := make([]data.Todo, len(ids))
 	data.DB.Where("ID in (?)", ids).Find(&todos)
+
+	fmt.Printf("Updating TODOs: %v", todos)
 	for _, todo := range todos {
 		if err := mapstructure.Decode(changes, &todo); err != nil {
 			return nil, err
