@@ -2,7 +2,7 @@ FROM node:latest
 ENV NPM_CONFIG_LOGLEVEL warn
 ARG app_env
 ENV NODE_ENV $app_env
-RUN mkdir /app
+RUN mkdir -p /app
 ADD . /app/
 WORKDIR /app
 EXPOSE 3000

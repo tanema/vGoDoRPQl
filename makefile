@@ -16,8 +16,6 @@ gen-schema: #required gqlgen installed locally
 rebuild:
 	docker-compose build api
 	docker-compose build frontend
-	docker-compose build db
 build-prod:
 	docker build ./api --build-arg app_env=production
 	docker build ./frontend --build-arg app_env=production
-	docker build ./db

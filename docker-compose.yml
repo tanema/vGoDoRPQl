@@ -2,6 +2,7 @@ version: '3'
 
 services:
   api:
+    image: golang:latest
     build:
       context: ./api
       args:
@@ -10,12 +11,11 @@ services:
       - ./api:/app
     ports:
       - "5000:8080"
-    links:
-      - db
     networks:
       - webnet
 
   frontend:
+    image: node:latest
     build:
       context: ./frontend
       args:
@@ -29,17 +29,10 @@ services:
 
   db:
     image: postgres:9
-    ports:
-      - "5432"
-    volumes:
-      - /tmp/pgdata:/pgdata
-    deploy:
-      placement:
-        constraints: [node.role == manager]
+    restart: always
     environment:
       - POSTGRES_USER=docker
       - POSTGRES_PASSWORD=docker
-      - PGDATA=/pg
     networks:
       - webnet
 
